@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <title>결제하기</title>
+  <script src="https://js.tosspayments.com/v1/payment"></script>
+</head>
+<body>
+
+    <div>
+
+      <button id="pay">결제하기</button>
+    </div>
+        <script>
+        var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
+        var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
+      </script>
+
+</body>
+    <script>
+        document.getElementById("pay").addEventListener("click", function(){
+              let orderInt = parseInt(Math.random()*2000);
+              tossPayments.requestPayment('카드', { // 결제 수단 파라미터
+              // 결제 정보 파라미터
+              amount: 1000,
+              orderId: 'm0caDijaidWRfDmhbX_'+orderInt,
+              orderName: 'Placement Test 이용권 (10회)',
+              customerName: '박토스',
+              successUrl: 'http://localhost:5058/tosspayments_success',
+              failUrl: 'http://localhost:5058/tosspayments_fail',
+            })
+
+        });
+
+    </script>
+</html>
